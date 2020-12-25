@@ -1,6 +1,6 @@
 # TVec
 1. Vector pooling.
-2. Uses ffi where JIT is avaliable and enabled.
+2. Uses **FFI** where **JIT** is avaliable and enabled.
 3. Flexible vector arithmatic. (ex. 3+v, v+3, v1+v2, v1:add(3), v1:add(v2))
 4. Consistent getBlah/setBlah,:operation(b) style API.
 5. Argument validation for all API functions, on invalid argument, throws a proper error message pointed to the proper line.
@@ -9,7 +9,7 @@
 
 # Installation
 Copy TVec.lua into your project and require it. <br/>
-Ex. Vec2 = require "TVec"
+Ex. `Vec2 = require "TVec"`
 
 # Documentation
 The API of TVec and it's quirks are documented in [TVEC_DOC.md]
