@@ -134,16 +134,6 @@ function Vec2:setAngle(r)
 	return self
 end
 
-function Vec2:normalize()
-	local v = self:getMag()
-	if v ~= 0 then
-		self.x = self.x / v
-		self.y = self.y / v
-	end
-	return self
-end
-Vec2.normalise = normalize --Alias for variants of English
-
 function Vec2:getMag()
 	return sqrt((self.x * self.x) + (self.y * self.y))
 end
@@ -161,6 +151,17 @@ function Vec2:setMag(m)
 	self.y = self.y * m
 	return self
 end
+
+function Vec2:normalize()
+	local v = self:getMag()
+	if v ~= 0 then
+		self.x = self.x / v
+		self.y = self.y / v
+	end
+	return self
+end
+Vec2.normalise = normalize --Alias for variants of English
+
 
 function Vec2:dot(b)
 	if not isVector(b) then err("Vec2 expected") end
