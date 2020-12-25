@@ -193,14 +193,6 @@ function Vec2:clampMag(min, max)
 	return self
 end
 
-function Vec2:limitMag(max)
-	max = tonumber(max)
-	if not max then err("Number expected") end
-	
-	self:clampMag(-huge, max)
-	return self
-end
-
 function Vec2:clampAngle(min, max)
 	min = tonumber(min)
 	max = tonumber(max)
@@ -213,14 +205,6 @@ function Vec2:clampAngle(min, max)
 	if m < min or m > max then
 		self:setAngle(clamp(m, min, max))
 	end
-	return self
-end
-
-function Vec2:limitAngle(max)
-	max = tonumber(max)
-	if not max then err("Number expected") end
-	
-	self:clampAngle(0, max)
 	return self
 end
 
