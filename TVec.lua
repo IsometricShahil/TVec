@@ -233,7 +233,7 @@ function Vec2:set(x, y)
 end
 
 function Vec2:replace(v)
-	if not isVector(v) then error("Vec2 expected.", 2) end
+	if not isVector(v) then err("Vec2 expected") end
 	self.x = v.x
 	self.y = v.y
 	return self
@@ -254,7 +254,7 @@ function Vec2:free()
 end
 
 function Vec2.__eq(a, b)
-	if not (Vec2.isVector(a) or Vec2.isVector(b)) then error("Vec2 expected.", 2)
+	if not (isVector(a) or isVector(b)) then err("Vec2 expected") end
 	return abs(a.x - b.x) < 1e-9 and --Using == on floating numbers is a sin
 	       abs(a.y - b.y) < 1e-9 end
 end
@@ -273,7 +273,7 @@ end
 
 local sharedCode = [[
 	function Vec2:NAME(b) --A general function, used like vec:add(v)
-		if not (isVector(b) or tonumber(b)) then error("Vec2 or number expected.", 2) end
+		if not (isVector(b) or tonumber(b)) then err("Vec2 or number expected") end
 		if isVector(b) then
 			self.x = self.x OP b.x
 			self.y = self.y OP b.y
@@ -289,8 +289,8 @@ local sharedCode = [[
 			return b OP a --Reverse it
 		end
 		
-		if not isVector(a) then error("Vec2 expected.", 2) end
-		if not (isVector(b) or tonumber(b)) then error("Vec2 or number expected.", 2) end
+		if not isVector(a) then err("Vec2 expected") end
+		if not (isVector(b) or tonumber(b)) then err("Vec2 or number expected") end
 		
 		local nv
 		if isVector(b) then
@@ -303,7 +303,7 @@ local sharedCode = [[
 	end
 ]]
 
-local ops = { --The spicy event names and their operator
+local ops = { --The event names and their respective operators
 	{"add", "+"},
 	{"sub", "-"},
 	{"mul", "*"},
@@ -317,7 +317,7 @@ local env = { --Environment to run the chunks in
 	new = new,
 	isVector = isVector,
 	tonumber = tonumber,
-	error = error
+	err = err
 }
 
 for i = 1, #ops do
@@ -350,6 +350,10 @@ if type(love) == "table" and
    type(love.math) == "table" and
    type(love.math.random) == "function" then
 	Vec2.rand = love.math.random
+end
+
+if ffi then
+	ffi.metatype(vType, Vec2)
 end
 
 --Module packup
