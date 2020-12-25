@@ -1,5 +1,5 @@
 -- Name: TVec.lua
--- Description: Simple, pooled, Vector2 library for Lua.
+-- Description: Simple, pooled, 2D vector library for Lua.
 -- Author: Shahil Ahmed (FlamingArr)
 -- Github: github.com/FlamingArr/TVec
 --
@@ -35,21 +35,31 @@
 local type = type
 local setmetatable = setmetatable
 local getmetatable = getmetatable
-
 local sin, cos = math.sin, math.cos
 local atan2 = math.atan2 or math.atan
 local sqrt = math.sqrt
 local abs = math.abs
 local pi, huge = math.pi, math.huge
-
 local remove = table.remove
 local insert = table.insert
-
 local tau = pi*2
+
+local ffi
+if jit and jit.status() and package.preload.ffi then
+	ffi = require "ffi"
+end
 
 --Everyone knows this function by now
 local function clamp(v, min, max)
 	return v < min and min or (v > max and max or v)
+end
+
+local _create, vType
+if ffi then
+	vType = ffi.typeof("struct {double x, y}") --Metatype is set at the end
+	_create = function() return vType() end
+else
+	_create = function() return setmetatable({}, Vec2) end
 end
 
 --The stack to hold freed vectors
@@ -63,12 +73,7 @@ end
 
 local Vec2 = {}
 Vec2.__index = Vec2
---------------------------------------------
 
----Create a new Vec2
---@param1 x x component of the new vector, default to 0.
---@param2 y y component of the new vector, default to x.
---@return v the new Vec2
 local function new(x, y)
 	local v = setmetatable(fetch(), Vec2)
 	
@@ -95,7 +100,6 @@ local function random(min, max)
 	max = max or tau
 	return fromAngle(Vec2.rand(min, max))
 end
---------------------------------------------
 
 function Vec2:getAngle()
 	local a = atan2(self.y, self.x)
@@ -212,8 +216,6 @@ function Vec2:free()
 	table.insert(freeStack, self)
 	return self
 end
-
---------------------------------------------
 
 function Vec2.__eq(a, b)
 	if not (Vec2.isVector(a) or Vec2.isVector(b)) then error("Vec2 expected.", 2)
