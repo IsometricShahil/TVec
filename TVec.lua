@@ -44,6 +44,10 @@ local remove = table.remove
 local insert = table.insert
 local tau = pi*2
 
+local Vec2 = {}
+Vec2.__index = Vec2
+
+
 local ffi
 if jit and jit.status() and package.preload.ffi then
 	ffi = require "ffi"
@@ -54,6 +58,12 @@ local function clamp(v, min, max)
 	return v < min and min or (v > max and max or v)
 end
 
+--Yes, I AM lazy
+local function err(msg)
+	error(msg, 2)
+end
+
+
 local _create, vType
 if ffi then
 	vType = ffi.typeof("struct {double x, y}") --Metatype is set at the end
@@ -61,21 +71,15 @@ if ffi then
 else
 	_create = function() return setmetatable({}, Vec2) end
 end
+--_create is just the version specific vector constructor
+--it doesn't set the x, y components
 
 --The stack to hold freed vectors
 local freeStack = {}
 
-local function fetch()
-	local v = remove(freeStack) --Pop from the stack of free vectors
-	return v or {} --If a free vector is avaliable return it, otherwise create one
-	--Note: This function is not responsible for setting the values of the vector!
-end
-
-local Vec2 = {}
-Vec2.__index = Vec2
-
 local function new(x, y)
-	local v = setmetatable(fetch(), Vec2)
+	local v = remove(freeStack) --Pop from the stack of free vectors
+	v = v or _create()
 	
 	--Convert x and y to either a number or nil
 	x = tonumber(x)
@@ -86,11 +90,20 @@ local function new(x, y)
 	return v
 end
 
-local function isVector(v)
-	return getmetatable(v) == Vec2
+local isVector
+if ffi then
+	isVector = function(v)
+		return type(v) == "cdata" and ffi.istype(v, vType)
+	end
+else
+	isVector = function(v)
+		return getmetatable(v) == Vec2
+	end
 end
 
 local function fromAngle(r, l)
+	r = tonumber(r)
+	if not r then error("
 	l = l or 1 --Magnitude
 	return new(cos(r) * l, sin(r) * l)
 end
