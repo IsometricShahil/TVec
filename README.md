@@ -15,5 +15,5 @@ The API of TVec and it's quirks are documented in [TVEC_DOC.md]
 
 # License
 TVec.lua is licensed under the terms and condition of the MIT License.
-See [LICENSE] for details.
+See [LICENSE](LICENSE) for details.
 (This is included at the top of TVec.lua for your convenience)
