@@ -288,7 +288,8 @@ local sharedCode = [[
 	end
 ]]
 
-local ops = { --The event names and their respective operators
+local ops = {
+	--Format: {Event, Operator}
 	{"add", "+"},
 	{"sub", "-"},
 	{"mul", "*"},
