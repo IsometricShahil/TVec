@@ -256,7 +256,7 @@ end
 function Vec2.__eq(a, b)
 	if not (isVector(a) or isVector(b)) then err("Vec2 expected") end
 	return abs(a.x - b.x) < 1e-9 and --Using == on floating numbers is a sin
-	       abs(a.y - b.y) < 1e-9 end
+	       abs(a.y - b.y) < 1e-9
 end
 
 function Vec2.__unm(v)
