@@ -74,6 +74,8 @@ end
 --_create is just the version specific vector constructor
 --it doesn't set the x, y components
 
+
+
 --The stack to hold freed vectors
 local freeStack = {}
 
@@ -103,14 +105,15 @@ end
 
 local function fromAngle(r, l)
 	r = tonumber(r)
-	if not r then error("
-	l = l or 1 --Magnitude
+	if not r then err("Number expected") end
+	l = tonumber(l) or 1
+	
 	return new(cos(r) * l, sin(r) * l)
 end
 
 local function random(min, max)
-	min = min or 0
-	max = max or tau
+	min = tonumber(min) or 0
+	max = tonumber(max) or tau
 	return fromAngle(Vec2.rand(min, max))
 end
 
@@ -122,7 +125,7 @@ end
 
 function Vec2:setAngle(r)
 	r = tonumber(r)
-	if not r then error("Number expect.") end
+	if not r then err("Number expected") end
 	
 	local m = self:getMag()
 	self.x = cos(r) * m
@@ -151,7 +154,7 @@ end
 
 function Vec2:setMag(m)
 	m = tonumber(m)
-	if not m then error("Number expected", 2) end
+	if not m then err("Number expected") end
 	
 	self:normalize()
 	self.x = self.x * m
@@ -160,21 +163,28 @@ function Vec2:setMag(m)
 end
 
 function Vec2:dot(b)
-	if not isVector(b) then error("Vec2 expected.", 2) end
+	if not isVector(b) then err("Vec2 expected") end
 	return a.x * b.x + a.y * b.y
 end
 
 function Vec2:dist(b)
-	if not isVector(b) then error("Vec2 expected.", 2) end
+	if not isVector(b) then err("Vec2 expected") end
 	return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y))
 end
 
 function Vec2:distSq(b)
-	if not isVector(b) then error("Vec2 expected.", 2) end
+	if not isVector(b) then err("Vec2 expected.") end
 	return (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)
 end
 
 function Vec2:clampMag(min, max)
+	min = tonumber(min)
+	max = tonumber(max)
+	
+	if not (min and max) then
+		err("Number expected")
+	end
+	
 	local m = self:getMag()
 	if m < min or m > max then
 		self:setMag(clamp(m, min, max))
@@ -183,11 +193,21 @@ function Vec2:clampMag(min, max)
 end
 
 function Vec2:limitMag(max)
+	max = tonumber(max)
+	if not max then err("Number expected") end
+	
 	self:clampMag(-huge, max)
 	return self
 end
 
 function Vec2:clampAngle(min, max)
+	min = tonumber(min)
+	max = tonumber(max)
+	
+	if not (min and max) then
+		err("Number expected")
+	end
+	
 	local m = self:getAngle()
 	if m < min or m > max then
 		self:setAngle(clamp(m, min, max))
@@ -196,6 +216,9 @@ function Vec2:clampAngle(min, max)
 end
 
 function Vec2:limitAngle(max)
+	max = tonumber(max)
+	if not max then err("Number expected") end
+	
 	self:clampAngle(0, max)
 	return self
 end
