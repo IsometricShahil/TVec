@@ -264,7 +264,7 @@ function Vec2.__unm(v)
 end
 
 function Vec2.__tostring(v)
-	return ("V(%f, %f)"):format(v.x, v.y)
+	return ("(%f, %f)"):format(v.x, v.y)
 end
 
 --Lazyness 101
@@ -294,7 +294,7 @@ local sharedCode = [[
 		
 		local nv
 		if isVector(b) then
-			nv = new(a.x OP b.x, a.y OP b.x)
+			nv = new(a.x OP b.x, a.y OP b.y)
 		else
 			nv = new(a.x OP b, a.y OP b)
 		end
