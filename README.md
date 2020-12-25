@@ -4,7 +4,7 @@
 3. Flexible vector arithmatic. (ex. `3+v`, `v+3`, `v1+v2`, `v1:add(3)`, `v1:add(v2)`)
 4. Consistent `:getBlah`/`:setBlah`,`:operation(b)` style API.
 5. Argument validation for all API functions, on invalid argument, throws a proper error message pointed to the proper line.
-6. Prefers love.math.random over math.random, also lets you use your own random function. TVec doesn't validate your custom random function.
+6. Prefers love.math.random over math.random, also lets you use your own random function. **TVec doesn't validate your custom random function.**
 7. Various clamping methods.
 
 # Installation
