@@ -11,7 +11,7 @@ Copy TVec.lua into your project and require it. <br/>
 Ex. `Vec2 = require "TVec"`
 
 # Documentation
-The API of TVec and it's quirks are documented in [TVEC_DOC.md].
+The API of TVec and it's quirks are documented in the [doc file](https://github.com/FlamingArr/TVec/blob/main/TVEC_DOC.md)
 
 # License
 TVec.lua is licensed under the terms and condition of the MIT License.
