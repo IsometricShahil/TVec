@@ -240,6 +240,10 @@ function Vec2:unpack()
 	return self.x, self.y
 end
 
+function Vec2:array()
+	return {self.x, self.y}
+end
+
 function Vec2:free()
 	for i = 1, MAX_FREE do
 		if freeStack[i] == nil then
@@ -274,7 +278,7 @@ end
 --'OP' is replaced with the operator of the event (eg. '+')
 
 local sharedCode = [[
-	function Vec2:NAME(b) --A general function, used like vec:add(v)
+	function Vec2:NAME(b) --An inline method, used like vec:add(v)
 		if not (isVector(b) or tonumber(b)) then err("Vec2 or number expected") end
 		if isVector(b) then
 			self.x = self.x OP b.x
@@ -298,6 +302,7 @@ local sharedCode = [[
 		if isVector(b) then
 			nv = new(a.x OP b.x, a.y OP b.y)
 		else
+			b = tonumber(b)
 			nv = new(a.x OP b, a.y OP b)
 		end
 		
@@ -340,7 +345,7 @@ end
 
 --Wrap Vec2.new(x, y) as Vec2(x, y)
 setmetatable(Vec2, {
-	__call = function(Vec2, x, y)
+	__call = function(_, x, y)
 		return new(x, y)
 	end
 })
