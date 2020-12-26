@@ -44,6 +44,8 @@ local remove = table.remove
 local insert = table.insert
 local tau = pi*2
 
+local MAX_FREE = 100 --Maximum number of freed vectors to hold in stack
+
 local Vec2 = {}
 Vec2.__index = Vec2
 
@@ -81,9 +83,9 @@ local freeStack = {}
 
 local function new(x, y)
 	local v = remove(freeStack) --Pop from the stack of free vectors
-	v = v or _create()
+	v = v or _create() --If the stack was empty then v will be nil, construct a new vector in that case
 	
-	--Convert x and y to either a number or nil
+	--Convert x and y to a number
 	x = tonumber(x)
 	y = tonumber(y)
 	
@@ -160,8 +162,11 @@ function Vec2:normalize()
 	end
 	return self
 end
-Vec2.normalise = normalize --Alias for variants of English
+Vec2.normalise = normalize --Alias
 
+function Vec2:rotate90()
+	self:set(-self.y, self.x)
+end
 
 function Vec2:dot(b)
 	if not isVector(b) then err("Vec2 expected") end
@@ -233,13 +238,15 @@ function Vec2:unpack()
 end
 
 function Vec2:free()
-	--Put this into the stack of free vectors
-	table.insert(freeStack, self)
+	local idx = #freeStack
+	if idx <= MAX_FREE then --If the stack holds less than MAX_FREE elements
+		freeStack[idx] = self --Insert it
+	end
 	return self
 end
 
 function Vec2.__eq(a, b)
-	if not (isVector(a) or isVector(b)) then err("Vec2 expected") end
+	if not (isVector(a) and isVector(b)) then err("Vec2 expected") end
 	return abs(a.x - b.x) < 1e-9 and --Using == on floating numbers is a sin
 	       abs(a.y - b.y) < 1e-9
 end
