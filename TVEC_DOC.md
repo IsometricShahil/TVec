@@ -42,9 +42,12 @@ Normalizes the vector, i.e. sets is magnitude to 1. <br/>
 Rotates the vector by Π or 90°, significantly faster than `:setAngle` and `:rotate`. <br/>
 
 * `TVec:dot(b)` <br/>
+Returns the [dot product](https://en.m.wikipedia.org/wiki/Dot_product) of `vec` and `b`. <br/>
 
 * `TVec:dist(b)` <br/>
+Returns the distance between `vec` and `b`. <br/>
 
 * `TVec:distSq(b)` <br/>
+Returns the distance squared between `vec` and `b`. <br/>
 
 ### Vector metamethods
