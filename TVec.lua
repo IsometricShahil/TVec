@@ -105,35 +105,35 @@ else
 	end
 end
 
-local function fromAngle(r, m)
-	r = tonumber(r)
-	if not r then err("Number expected") end
+local function fromAngle(t, m)
+	t = tonumber(t)
+	if not t then err("Number expected") end
 	l = tonumber(m) or 1
 	
-	return new(cos(r) * m, sin(r) * m)
+	return new(cos(t) * m, sin(t) * m)
 end
 
 local function random(min, max)
 	min = tonumber(min) or 0
 	max = tonumber(max) or tau
 	
-	local r = min + ((max - min) / 1) * TVec.rand()
-	return fromAngle(r)
+	local t = min + ((max - min) / 1) * TVec.rand()
+	return fromAngle(t)
 end
 
 function TVec:getAngle()
-	local a = atan2(self.y, self.x)
-	if a < 0 then a = a + tau end
-	return a
+	local t = atan2(self.y, self.x)
+	if t < 0 then t = t + tau end
+	return t
 end
 
-function TVec:setAngle(r)
-	r = tonumber(r)
-	if not r then err("Number expected") end
+function TVec:setAngle(t)
+	t = tonumber(t)
+	if not t then err("Number expected") end
 	
 	local m = self:getMag()
-	self.x = cos(r) * m
-	self.y = sin(r) * m
+	self.x = cos(t) * m
+	self.y = sin(t) * m
 	
 	return self
 end
@@ -165,6 +165,15 @@ function TVec:normalize()
 	return self
 end
 TVec.normalise = normalize --Alias
+
+function TVec:rotate(t)
+	t = tonumber(t)
+	if not t then err("Number expected") end
+	
+	local oldT = self:getAngle()
+	self:setAngle(oldT+t)
+	return self
+end
 
 function TVec:rotate90()
 	self:set(-self.y, self.x)
@@ -209,26 +218,10 @@ function TVec:clampAngle(min, max)
 		err("Number expected")
 	end
 	
-	local m = self:getAngle()
-	if m < min or m > max then
-		self:setAngle(clamp(m, min, max))
+	local t = self:getAngle()
+	if t < min or t > max then
+		self:setAngle(clamp(t, min, max))
 	end
-	return self
-end
-
-function TVec:set(x, y)
-	x = tonumber(x)
-	y = tonumber(y)
-	
-	self.x = x or self.x
-	self.y = y or self.y
-	return self
-end
-
-function TVec:replace(v)
-	if not isVector(v) then err("TVec expected") end
-	self.x = v.x
-	self.y = v.y
 	return self
 end
 
@@ -238,10 +231,6 @@ end
 
 function TVec:unpack()
 	return self.x, self.y
-end
-
-function TVec:array()
-	return {self.x, self.y}
 end
 
 function TVec:free()
