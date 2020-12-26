@@ -57,9 +57,9 @@ Clamps the angle of the vector between `min` and `max`. <br/>
 Clamps the magnitude of the vector between `min` and `max`. <br/>
 
 * `vec:clone()` <br/>
-Returns a copy of `vec`.
+Returns a copy of `vec`. <br/>
 
 * `vec:unpack()` <br/>
-Returns the x and y components of `vec`.
+Returns the x and y components of `vec`. <br/>
 
 ### Vector metamethods
