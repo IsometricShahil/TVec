@@ -10,12 +10,12 @@ Returns true if `v` is a TVec vector, false otherwise. <br/>
 `v`: The vector to check. <br/>
 
 3. `TVec.fromAngle(r [, m])`
-Creates and returns a vector with the angle `r` and magnitude `m`. <br/>
+Creates and returns a new vector with the angle `r` and magnitude `m`. <br/>
 `r`: The angle of the vector. <br/>
 `m`: The magnitude of the vector, defaults to 1. <br/>
 **Alias**: `TVec.fromPolar`. <br/>
 
 4. `TVec.random(min, max)` <br/>
-Creates and returns a vector with a random angle and magnitude 1. <br/>
+Creates and returns a new vector with a random angle and magnitude 1. <br/>
 `min`: Minimum angle of the vector, defaults to 0. <br/>
-`max`: Maximum angle of the vector, defaults to pi*2 or tau. <br/>
+`max`: Maximum angle of the vector, defaults to 2Π. <br/>
