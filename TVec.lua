@@ -166,6 +166,7 @@ Vec2.normalise = normalize --Alias
 
 function Vec2:rotate90()
 	self:set(-self.y, self.x)
+	return self
 end
 
 function Vec2:dot(b)
