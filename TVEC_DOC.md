@@ -50,4 +50,16 @@ Returns the distance between `vec` and `b`. <br/>
 * `TVec:distSq(b)` <br/>
 Returns the distance squared between `vec` and `b`. <br/>
 
+* `TVec:clampAngle(min, max)` <br/>
+Clamps the angle of the vector between `min` and `max`. <br/>
+
+* `TVec:clampMag(min, max)` <br/>
+Clamps the magnitude of the vector between `min` and `max`. <br/>
+
+* `TVec:clone()` <br/>
+Returns a copy of `vec`.
+
+* `TVec:unpack()` <br/>
+Returns the x and y components of `vec`.
+
 ### Vector metamethods
