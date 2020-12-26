@@ -89,12 +89,3 @@ TVec picks `love.math.random` if it is avaliable, otherwise it uses `math.random
 to make TVec use your own random function do, `TVec.rand = yourRandomFunction`,
 when called this function should return a random value between 0 and 1.
 **TVec doesn't validate your function.**
-
-
-
-
-
-
-
-
-
