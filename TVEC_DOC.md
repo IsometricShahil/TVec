@@ -1,4 +1,10 @@
-# API
+# TVec documentation
+## Introduction
+This documentation is divided into two sections.
+The **API** part documents the functions, methods and metamethods provided by TVec, while
+The **Quirks** part documents various information about `TVec`.
+
+## API
 ### Module functions
 * `TVec.new([x [, y]])` <br/>
 Creates and returns a new vector. <br/>
@@ -67,3 +73,7 @@ Returns the x and y components of `vec`. <br/>
 Used operator is applied component-wise and a new vector holding the result is returned. <br/>
 * The `==` operator can be used to check if two vectors are equal component-wise. <br/>
 * `tostring(vec)` returns a string representation of `vec`.
+
+
+
+## Quirks
