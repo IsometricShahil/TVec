@@ -13,8 +13,8 @@ Creates and returns a new vector. <br/>
 * `TVec.isVector(v)` <br/>
 Returns true if `v` is a TVec vector, false otherwise. <br/>
 
-* `TVec.fromAngle(r [, m])` <br/>
-Creates and returns a new vector with the angle `r`. <br/>
+* `TVec.fromAngle(t [, m])` <br/>
+Creates and returns a new vector with the angle `t`. <br/>
 `m` is the magnitude of the vector, defaults to 1. <br/>
 **Alias**: `TVec.fromPolar`. <br/>
 
@@ -28,8 +28,8 @@ Creates and returns a new vector with a random angle and magnitude 1. <br/>
 * `vec:getAngle()` <br/>
 Returns the angle of the vector. <br/>
 
-* `vec:setAngle(r)` <br/>
-Sets the angle of the vector to `r`. <br/>
+* `vec:setAngle(t)` <br/>
+Sets the angle of the vector to `t`. <br/>
 
 * `vec:getMag()` <br/>
 Returns the magnitude of the vector. <br/>
@@ -43,6 +43,9 @@ Sets the magnitude of the vector to `m`. <br/>
 * `vec:normalize()` <br/>
 Normalizes the vector, i.e. sets is magnitude to 1. <br/>
 **Alias**: `vec:normalize`. <br/>
+
+* `vec:rotate(t)` <br/>
+Rotates the vector by `t`.
 
 * `vec:rotate90()` <br/>
 Rotates the vector by Π or 90°, significantly faster than `:setAngle` and `:rotate`. <br/>
@@ -83,7 +86,7 @@ Used operator is applied component-wise and a new vector holding the result is r
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
 * Random function <br/>
 TVec picks `love.math.random` if it is avaliable, otherwise it uses `math.random`
-to make TVec use your own random function do, `TVec.rand = yourRandomFunction`
+to make TVec use your own random function do, `TVec.rand = yourRandomFunction`,
 when called this function should return a random value between 0 and 1.
 **TVec doesn't validate your function.**
 
