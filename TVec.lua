@@ -46,8 +46,8 @@ local tau = pi*2
 
 local MAX_FREE = 100 --Maximum number of freed vectors to hold in stack
 
-local Vec2 = {}
-Vec2.__index = Vec2
+local TVec = {}
+TVec.__index = TVec
 
 
 local ffi
@@ -71,7 +71,7 @@ if ffi then
 	vType = ffi.typeof("struct {double x, y;}") --Metatype is set at the end
 	_create = function() return vType() end
 else
-	_create = function() return setmetatable({}, Vec2) end
+	_create = function() return setmetatable({}, TVec) end
 end
 --_create is just the version specific vector constructor
 --it doesn't set the x, y components
@@ -101,33 +101,33 @@ if ffi then
 	end
 else
 	isVector = function(v)
-		return getmetatable(v) == Vec2
+		return getmetatable(v) == TVec
 	end
 end
 
-local function fromAngle(r, l)
+local function fromAngle(r, m)
 	r = tonumber(r)
 	if not r then err("Number expected") end
-	l = tonumber(l) or 1
+	l = tonumber(m) or 1
 	
-	return new(cos(r) * l, sin(r) * l)
+	return new(cos(r) * m, sin(r) * m)
 end
 
 local function random(min, max)
 	min = tonumber(min) or 0
 	max = tonumber(max) or tau
 	
-	local r = min + ((max - min) / 1) * Vec2.rand()
+	local r = min + ((max - min) / 1) * TVec.rand()
 	return fromAngle(r)
 end
 
-function Vec2:getAngle()
+function TVec:getAngle()
 	local a = atan2(self.y, self.x)
 	if a < 0 then a = a + tau end
 	return a
 end
 
-function Vec2:setAngle(r)
+function TVec:setAngle(r)
 	r = tonumber(r)
 	if not r then err("Number expected") end
 	
@@ -138,15 +138,15 @@ function Vec2:setAngle(r)
 	return self
 end
 
-function Vec2:getMag()
+function TVec:getMag()
 	return sqrt((self.x * self.x) + (self.y * self.y))
 end
 
-function Vec2:getMagSq() --Prefer this instead of (v:getMag()^2) for performance as it avoids a sqrt() and ^2
+function TVec:getMagSq() --Prefer this instead of (v:getMag()^2) for performance as it avoids a sqrt() and ^2
 	return (self.x * self.x) + (self.y * self.y)
 end
 
-function Vec2:setMag(m)
+function TVec:setMag(m)
 	m = tonumber(m)
 	if not m then err("Number expected") end
 	
@@ -156,7 +156,7 @@ function Vec2:setMag(m)
 	return self
 end
 
-function Vec2:normalize()
+function TVec:normalize()
 	local v = self:getMag()
 	if v ~= 0 then
 		self.x = self.x / v
@@ -164,29 +164,29 @@ function Vec2:normalize()
 	end
 	return self
 end
-Vec2.normalise = normalize --Alias
+TVec.normalise = normalize --Alias
 
-function Vec2:rotate90()
+function TVec:rotate90()
 	self:set(-self.y, self.x)
 	return self
 end
 
-function Vec2:dot(b)
-	if not isVector(b) then err("Vec2 expected") end
+function TVec:dot(b)
+	if not isVector(b) then err("TVec expected") end
 	return a.x * b.x + a.y * b.y
 end
 
-function Vec2:dist(b)
-	if not isVector(b) then err("Vec2 expected") end
+function TVec:dist(b)
+	if not isVector(b) then err("TVec expected") end
 	return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y))
 end
 
-function Vec2:distSq(b)
-	if not isVector(b) then err("Vec2 expected.") end
+function TVec:distSq(b)
+	if not isVector(b) then err("TVec expected.") end
 	return (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)
 end
 
-function Vec2:clampMag(min, max)
+function TVec:clampMag(min, max)
 	min = tonumber(min)
 	max = tonumber(max)
 	
@@ -201,7 +201,7 @@ function Vec2:clampMag(min, max)
 	return self
 end
 
-function Vec2:clampAngle(min, max)
+function TVec:clampAngle(min, max)
 	min = tonumber(min)
 	max = tonumber(max)
 	
@@ -216,7 +216,7 @@ function Vec2:clampAngle(min, max)
 	return self
 end
 
-function Vec2:set(x, y)
+function TVec:set(x, y)
 	x = tonumber(x)
 	y = tonumber(y)
 	
@@ -225,26 +225,26 @@ function Vec2:set(x, y)
 	return self
 end
 
-function Vec2:replace(v)
-	if not isVector(v) then err("Vec2 expected") end
+function TVec:replace(v)
+	if not isVector(v) then err("TVec expected") end
 	self.x = v.x
 	self.y = v.y
 	return self
 end
 
-function Vec2:clone()
+function TVec:clone()
 	return new(self.x, self.y)
 end
 
-function Vec2:unpack()
+function TVec:unpack()
 	return self.x, self.y
 end
 
-function Vec2:array()
+function TVec:array()
 	return {self.x, self.y}
 end
 
-function Vec2:free()
+function TVec:free()
 	for i = 1, MAX_FREE do
 		if freeStack[i] == nil then
 			freeStack[i] = self
@@ -259,17 +259,17 @@ function Vec2:free()
 	return self
 end
 
-function Vec2.__eq(a, b)
-	if not (isVector(a) and isVector(b)) then err("Vec2 expected") end
+function TVec.__eq(a, b)
+	if not (isVector(a) and isVector(b)) then err("TVec expected") end
 	return abs(a.x - b.x) < 1e-9 and --Using == on floating numbers is a sin
 	       abs(a.y - b.y) < 1e-9
 end
 
-function Vec2.__unm(v)
+function TVec.__unm(v)
 	return new(-v.x, -v.y)
 end
 
-function Vec2.__tostring(v)
+function TVec.__tostring(v)
 	return ("(%f, %f)"):format(v.x, v.y)
 end
 
@@ -278,8 +278,8 @@ end
 --'OP' is replaced with the operator of the event (eg. '+')
 
 local sharedCode = [[
-	function Vec2:NAME(b) --An inline method, used like vec:add(v)
-		if not (isVector(b) or tonumber(b)) then err("Vec2 or number expected") end
+	function TVec:NAME(b) --An inline method, used like vec:add(v)
+		if not (isVector(b) or tonumber(b)) then err("TVec or number expected") end
 		if isVector(b) then
 			self.x = self.x OP b.x
 			self.y = self.y OP b.y
@@ -292,13 +292,13 @@ local sharedCode = [[
 		return self
 	end
 	
-	function Vec2.__NAME(a, b) --Metamethod
+	function TVec.__NAME(a, b) --Metamethod
 		if isVector(b) and not isVector(a) then
 			return b OP a --Reverse it
 		end
 		
-		if not isVector(a) then err("Vec2 expected") end
-		if not (isVector(b) or tonumber(b)) then err("Vec2 or number expected") end
+		if not isVector(a) then err("TVec expected") end
+		if not (isVector(b) or tonumber(b)) then err("TVec or number expected") end
 		
 		local nv
 		if isVector(b) then
@@ -323,7 +323,7 @@ local ops = {
 }
 
 local env = { --Environment to run the chunks in
-	Vec2 = Vec2,
+	TVec = TVec,
 	new = new,
 	isVector = isVector,
 	tonumber = tonumber,
@@ -345,34 +345,34 @@ for i = 1, #ops do
 	chunk()
 end
 
---Wrap Vec2.new(x, y) as Vec2(x, y)
-setmetatable(Vec2, {
+--Wrap TVec.new(x, y) as TVec(x, y)
+setmetatable(TVec, {
 	__call = function(_, x, y)
 		return new(x, y)
 	end
 })
 
 --Default to math.random
-Vec2.rand = math.random
+TVec.rand = math.random
 
 --Switch to love.math.random if avaliable
 if type(love) == "table" and
    type(love.math) == "table" and
    type(love.math.random) == "function" then
-	Vec2.rand = love.math.random
+	TVec.rand = love.math.random
 end
 
 if ffi then
-	ffi.metatype(vType, Vec2)
+	ffi.metatype(vType, TVec)
 end
 
 --Module packup
-Vec2.new = new
-Vec2.isVector = isVector
-Vec2.fromAngle = fromAngle
-Vec2.fromPolar = fromAngle --Alias
-Vec2.random = random
-Vec2.rand = math.random
+TVec.new = new
+TVec.isVector = isVector
+TVec.fromAngle = fromAngle
+TVec.fromPolar = fromAngle --Alias
+TVec.random = random
+TVec.rand = math.random
 
-Vec2._stack = freeStack
-return Vec2
+TVec._stack = freeStack
+return TVec
