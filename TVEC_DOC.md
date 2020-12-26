@@ -63,3 +63,8 @@ Returns a copy of `vec`. <br/>
 Returns the x and y components of `vec`. <br/>
 
 ### Vector metamethods
+The operators `+`, `-`, `*`, `/`, `^`, `%` can be applied to two vectors or a vector and a scalar. <br/>
+The operator is applied component-wise and a new vector holding the result is returned. <br/>
+
+The `==` operator can be used to check if two vectors are equal component-wise.
+`tostring(vec)` returns a string representation of `vec`.
