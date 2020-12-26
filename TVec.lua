@@ -62,7 +62,7 @@ end
 
 --Yes, I AM lazy
 local function err(msg)
-	error(msg, 2)
+	error(msg, 3)
 end
 
 
@@ -116,7 +116,9 @@ end
 local function random(min, max)
 	min = tonumber(min) or 0
 	max = tonumber(max) or tau
-	return fromAngle(Vec2.rand(min, max))
+	
+	local r = min + ((max - min) / 1) * Vec2.rand()
+	return fromAngle(r)
 end
 
 function Vec2:getAngle()
@@ -239,10 +241,17 @@ function Vec2:unpack()
 end
 
 function Vec2:free()
-	local idx = #freeStack
-	if idx <= MAX_FREE then --If the stack holds less than MAX_FREE elements
-		freeStack[idx] = self --Insert it
+	for i = 1, MAX_FREE do
+		if freeStack[i] == nil then
+			freeStack[i] = self
+			break
+		end
+		
+		if freeStack[i] == self then
+			err("Vector is already freed")
+		end
 	end
+	
 	return self
 end
 
@@ -354,6 +363,8 @@ end
 Vec2.new = new
 Vec2.fromAngle = fromAngle
 Vec2.fromPolar = fromAngle --Alias
+Vec2.random = random
 Vec2.rand = math.random
 
+Vec2._stack = freeStack
 return Vec2
