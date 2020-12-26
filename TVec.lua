@@ -68,7 +68,7 @@ end
 
 local _create, vType
 if ffi then
-	vType = ffi.typeof("struct {double x, y}") --Metatype is set at the end
+	vType = ffi.typeof("struct {double x, y;}") --Metatype is set at the end
 	_create = function() return vType() end
 else
 	_create = function() return setmetatable({}, Vec2) end
@@ -288,6 +288,8 @@ local sharedCode = [[
 			self.x = self.x OP b
 			self.y = self.y OP b
 		end
+		
+		return self
 	end
 	
 	function Vec2.__NAME(a, b) --Metamethod
@@ -366,6 +368,7 @@ end
 
 --Module packup
 Vec2.new = new
+Vec2.isVector = isVector
 Vec2.fromAngle = fromAngle
 Vec2.fromPolar = fromAngle --Alias
 Vec2.random = random
