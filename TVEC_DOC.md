@@ -77,3 +77,17 @@ Used operator is applied component-wise and a new vector holding the result is r
 
 
 ## Quirks
+* Random function <br/>
+TVec picks `love.math.random` if it is avaliable, otherwise it uses `math.random`
+To make TVec use your own random function do, `TVec.rand = yourRandomFunction`
+When called this function should return a random value between 0 and 1.
+**TVec doesn't validate this function**
+
+
+
+
+
+
+
+
+
