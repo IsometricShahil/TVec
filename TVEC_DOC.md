@@ -38,28 +38,28 @@ Sets the magnitude of the vector to `m`. <br/>
 Normalizes the vector, i.e. sets is magnitude to 1. <br/>
 **Alias**: `vec:normalize`. <br/>
 
-* `TVec:rotate90()` <br/>
+* `vec:rotate90()` <br/>
 Rotates the vector by Π or 90°, significantly faster than `:setAngle` and `:rotate`. <br/>
 
-* `TVec:dot(b)` <br/>
+* `vec:dot(b)` <br/>
 Returns the [dot product](https://en.m.wikipedia.org/wiki/Dot_product) of `vec` and `b`. <br/>
 
-* `TVec:dist(b)` <br/>
+* `vec:dist(b)` <br/>
 Returns the distance between `vec` and `b`. <br/>
 
-* `TVec:distSq(b)` <br/>
+* `vec:distSq(b)` <br/>
 Returns the distance squared between `vec` and `b`. <br/>
 
-* `TVec:clampAngle(min, max)` <br/>
+* `vec:clampAngle(min, max)` <br/>
 Clamps the angle of the vector between `min` and `max`. <br/>
 
-* `TVec:clampMag(min, max)` <br/>
+* `vec:clampMag(min, max)` <br/>
 Clamps the magnitude of the vector between `min` and `max`. <br/>
 
-* `TVec:clone()` <br/>
+* `vec:clone()` <br/>
 Returns a copy of `vec`.
 
-* `TVec:unpack()` <br/>
+* `vec:unpack()` <br/>
 Returns the x and y components of `vec`.
 
 ### Vector metamethods
