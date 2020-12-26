@@ -7,7 +7,7 @@ Creates and returns a new vector. <br/>
 * `TVec.isVector(v)` <br/>
 Returns true if `v` is a TVec vector, false otherwise. <br/>
 
-* `TVec.fromAngle(r [, m])`
+* `TVec.fromAngle(r [, m])` <br/>
 Creates and returns a new vector with the angle `r`. <br/>
 `m` is the magnitude of the vector, defaults to 1. <br/>
 **Alias**: `TVec.fromPolar`. <br/>
@@ -36,7 +36,15 @@ Sets the magnitude of the vector to `m`. <br/>
 
 * `vec:normalize()` <br/>
 Normalizes the vector, i.e. sets is magnitude to 1. <br/>
+**Alias**: `vec:normalize`. <br/>
 
+* `TVec:rotate90()` <br/>
+Rotates the vector by Π or 90°, significantly faster than `:setAngle` and `:rotate`. <br/>
 
+* `TVec:dot(b)` <br/>
+
+* `TVec:dist(b)` <br/>
+
+* `TVec:distSq(b)` <br/>
 
 ### Vector metamethods
