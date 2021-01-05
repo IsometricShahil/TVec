@@ -6,10 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-    - name: Install lua 5.4
+    - name: Install luaJIT
       run: |
-       wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
-       tar -zxvf lua-5.4.2.tar.gz
-       cd lua-5.4.2
-       echo MAKING IT NOW
-       sudo make install
+       wget http://luajit.org/download/LuaJIT-2.1.0-beta3.zip
+       unzip LuaJIT-2.1.0-beta3.zip
+       cd LuaJIT-2.1.0
+       make && sudo make install
