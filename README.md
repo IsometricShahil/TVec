@@ -19,6 +19,10 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 2. Cross product.
 3. Mirroring.
 
+# Unit-Testing
+TVec uses [lust](https://github.com/bjronbytes/lust) for running it's tests, which can be found in `tests.lua`. <br/>
+Additionally, tests are runned automatically for every commit by GitHub Actions.
+
 # License
 TVec.lua is licensed under the terms and condition of the MIT License.
 See [LICENSE](LICENSE) for details.
