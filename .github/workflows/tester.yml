@@ -11,4 +11,5 @@ jobs:
        wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
        tar -zxvf lua-5.4.2.tar.gz
        cd lua-5.4.2
+       echo MAKING IT NOW
        sudo make install
