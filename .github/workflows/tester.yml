@@ -1,0 +1,15 @@
+name: Tester
+on: [push]
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+      steps:
+      
+        name: Install lua 5.2
+          run: |
+            wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
+            tar -zxvf lua-5.4.2.tar.gz
+            cd lua-5.4.2
+            sudo make install
+        name: Install luaJIT
