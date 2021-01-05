@@ -5,7 +5,7 @@
 --
 -- The MIT License (MIT)
 -- 
--- Copyright (c) 2020 Shahil Ahmed
+-- Copyright (c) 2021 Shahil Ahmed
 -- 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
 -- of this software and associated documentation files (the "Software"), to deal
@@ -25,11 +25,8 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 -- THE SOFTWARE.
 
---assert(cond, msg) should be avoided completely for performance reasons.
+--assert(cond, msg) should be avoided completely to not generate garbage.
 --use `if not cond then error(msg [, 2]) end
-
---Also going nyoom with `ffi` is not a goal of this library as,
---it's hard to unify the jitted and non-jitted version
 
 --Localizations
 local type = type
@@ -51,16 +48,21 @@ TVec.__index = TVec
 
 
 local ffi
+
+--We use ffi structs if:
+--1. JIT exists at all.
+--2. JIT is enabled.
+--3. FFI exists.
 if jit and jit.status() and package.preload.ffi then
 	ffi = require "ffi"
 end
 
---Everyone knows this function by now
+--C L A M P
 local function clamp(v, min, max)
 	return v < min and min or (v > max and max or v)
 end
 
---Yes, I AM lazy
+--Shortcut, keeps my fingers sane
 local function err(msg)
 	error(msg, 3)
 end
@@ -117,7 +119,7 @@ local function random(min, max)
 	min = tonumber(min) or 0
 	max = tonumber(max) or tau
 	
-	local t = min + ((max - min) / 1) * TVec.rand()
+	local t = min + (max - min) * TVec.rand()
 	return fromAngle(t)
 end
 
@@ -142,7 +144,7 @@ function TVec:getMag()
 	return sqrt((self.x * self.x) + (self.y * self.y))
 end
 
-function TVec:getMagSq() --Prefer this instead of (v:getMag()^2) for performance as it avoids a sqrt() and ^2
+function TVec:getMagSq()
 	return (self.x * self.x) + (self.y * self.y)
 end
 
@@ -187,12 +189,16 @@ end
 
 function TVec:dist(b)
 	if not isVector(b) then err("TVec expected") end
-	return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y))
+	local xd = a.x - b.x
+	local yd = a.y - b.y
+	return sqrt(xd * xd + yd * yd)
 end
 
 function TVec:distSq(b)
 	if not isVector(b) then err("TVec expected.") end
-	return (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)
+	local xd = a.x - b.x
+	local yd = a.y - b.y
+	return xd * xd + yd * yd
 end
 
 function TVec:clampMag(min, max)
@@ -334,6 +340,10 @@ for i = 1, #ops do
 	chunk()
 end
 
+--Don't hold these in memory
+ops = nil
+env = nil
+
 --Wrap TVec.new(x, y) as TVec(x, y)
 setmetatable(TVec, {
 	__call = function(_, x, y)
@@ -363,5 +373,5 @@ TVec.fromPolar = fromAngle --Alias
 TVec.random = random
 TVec.rand = math.random
 
-TVec._stack = freeStack
+TVec._stack = freeStack --In case, you feel like... "messing"
 return TVec
