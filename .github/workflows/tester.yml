@@ -18,6 +18,9 @@ jobs:
     - name: Get lust
       run: wget https://raw.githubusercontent.com/bjornbytes/lust/master/lust.lua
     
+    - name: Test
+      run: ls
+    
     - name: Run tests with JIT enabled
       run: ./luajit -e "jit.on() dofile('tests.lua')"
     - name: Run tests with JIT disabled
