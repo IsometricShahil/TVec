@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      name: Install lua 5.2
+      name: Install lua 5.4
        run: |
          wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
          tar -zxvf lua-5.4.2.tar.gz
