@@ -21,4 +21,4 @@ jobs:
     - name: Run tests with JIT enabled
       run: ./luajit -e "jit.on() dofile('tests.lua')"
     - name: Run tests with JIT disabled
-      run: luajit -e "jit.off() dofile('tests.lua')"
+      run: ./luajit -e "jit.off() dofile('tests.lua')"
