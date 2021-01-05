@@ -5,7 +5,7 @@
 4. Consistent `:getBlah`/`:setBlah`,`:operation(b)` style API.
 5. Argument validation for all API functions, on invalid argument, throws a proper error message pointed to the proper line.
 6. Prefers `love.math.random` over `math.random`, also lets you use your own random function.
-7. Accepts strings as numbers.
+7. Accepts strings as numbers. (anything convertable with `tonumber(v)` works.)
 
 # Installation
 Copy TVec.lua into your project and require it. <br/>
