@@ -13,7 +13,7 @@ jobs:
        cd LuaJIT-2.1.0-beta3
        make
        ls
-       mv luajit ../luajit
+       mv src/luajit ../luajit
     
     - name: Get lust
       run: wget https://raw.githubusercontent.com/bjornbytes/lust/master/lust.lua
