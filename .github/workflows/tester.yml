@@ -12,3 +12,11 @@ jobs:
        unzip LuaJIT-2.1.0-beta3.zip
        cd LuaJIT-2.1.0-beta3
        make && sudo make install
+     
+    - name: Get lust
+      run: wget https://raw.githubusercontent.com/bjornbytes/lust/master/lust.lua
+    
+    - name: Run tests with JIT enabled
+      run: luajit -e "jit.on() dofile('tests.lua')"
+    - name: Run tests with JIT disabled
+      run: luajit -e "jit.off() dofile('tests.lua')"
