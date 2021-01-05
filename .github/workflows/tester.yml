@@ -5,7 +5,10 @@ jobs:
   Tests:
     runs-on: ubuntu-latest
     steps:
-      
+    
+    - name: Checkout
+      uses: actions/checkout@v2
+    
     - name: Install luaJIT
       run: |
        wget http://luajit.org/download/LuaJIT-2.1.0-beta3.zip
