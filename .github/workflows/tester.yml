@@ -11,7 +11,7 @@ jobs:
        wget http://luajit.org/download/LuaJIT-2.1.0-beta3.zip
        unzip LuaJIT-2.1.0-beta3.zip
        cd LuaJIT-2.1.0-beta3
-       make && sudo make install
+       make
        mv luajit ../luajit
     
     - name: Get lust
