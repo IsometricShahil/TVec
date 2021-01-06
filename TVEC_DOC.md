@@ -76,6 +76,10 @@ Returns the x and y components of `vec`. <br/>
 If `x` is given, sets the x component to `x`, else keeps it unchanged.
 Same for `y`.
 
+* `vec:free()` <br/>
+Frees the vector, i.e. stores it in a pool so it can be re-used.
+Recommended for vectors that are created and thrown away every frame.
+
 * `vec:add(b)` <br/>
 Performs component-wise addition with `vec` and `b`.
 `b` can be a number or a TVec.
@@ -91,6 +95,7 @@ Used operator is applied component-wise and a new vector holding the result is r
 
 ## Quirks
 * **All** angles are given/taken in [radians](https://en.m.wikipedia.org/wiki/Radian).
+* All the methods but not the metamethods work inline, but you can do something like `v:clone():setMag(2)`.
 * Methods that don't seem to return anything, return `vec`, so you can do `vec:setAngle(3.14):setMag(4)`.
 * You can pass strings where numbers are expected, TVec will use `tonumber()` to convert them, this also applies to metamethods. <br/>
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
