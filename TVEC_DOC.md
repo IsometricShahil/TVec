@@ -76,6 +76,11 @@ Returns the x and y components of `vec`. <br/>
 If `x` is given, sets the x component to `x`, else keeps it unchanged.
 Same for `y`.
 
+* `vec:add(b)` <br/>
+Performs component-wise addition with `vec` and `b`.
+`b` can be a number or a TVec.
+Similiary, there are `sub`, `mul`, `div`, `mod`, `pow`.
+
 ### Vector metamethods
 * The operators `+`, `-`, `*`, `/`, `^`, `%` can be applied to two vectors or a vector and a scalar. <br/>
 Used operator is applied component-wise and a new vector holding the result is returned. <br/>
