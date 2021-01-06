@@ -110,7 +110,7 @@ end
 local function fromAngle(t, m)
 	t = tonumber(t)
 	if not t then err("Number expected") end
-	l = tonumber(m) or 1
+	m = tonumber(m) or 1
 	
 	return new(cos(t) * m, sin(t) * m)
 end
