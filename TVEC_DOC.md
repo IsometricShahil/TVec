@@ -5,6 +5,9 @@ The **API** part documents the functions, methods and metamethods provided by TV
 the **Quirks** part documents various information about `TVec`.
 You are advised to read both of these sections.
 
+`f(x)` means `x` is a required parameter which you must pass in.
+`f([x])` means `x` is an optional parameter which defaults to a some value.
+
 ## API
 ### Module functions
 * `TVec.new([x [, y]])` <br/>
