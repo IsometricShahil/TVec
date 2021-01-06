@@ -99,8 +99,8 @@ Used operator is applied component-wise and a new vector holding the result is r
 * Methods that don't seem to return anything, return `vec`, so you can do `vec:setAngle(3.14):setMag(4)`.
 * You can pass strings where numbers are expected, TVec will use `tonumber()` to convert them, this also applies to metamethods. <br/>
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
-* While TVec validates your arguments for required params, it doesn't do that for optional params, if you pass in an invalid value for an optional param, the default value is used.
+* While TVec validates your arguments for required params, it doesn't do that for optional params, if you pass in an invalid value for an optional param, the default value will be used.
 * TVec picks `love.math.random` if it is avaliable, otherwise it uses `math.random`.
-**TVec doesn't validate your random function.**
 to make TVec use your own random function do, `TVec.rand = yourRandomFunction`,
 when called this function should return a random value between 0 and 1.
+**TVec doesn't validate your random function.**
