@@ -99,7 +99,7 @@ Used operator is applied component-wise and a new vector holding the result is r
 ## Quirks
 * **All** angles are given/taken in [radians](https://en.m.wikipedia.org/wiki/Radian).
 * All the methods but not the metamethods work inline, but you can do something like `v:clone():setMag(2)`.
-* Methods that don't seem to return anything, return `vec`, so you can do `vec:setAngle(3.14):setMag(4)`.
+* Methods that don't seem to return anything, return the vector itself, so you can do `vec:setAngle(3.14):setMag(4)`.
 * You can pass strings where numbers are expected, TVec will use `tonumber()` to convert them, this also applies to metamethods. <br/>
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
 * While TVec validates your arguments for required params, it doesn't do that for optional params, if you pass in an invalid value for an optional param, the default value will be used.
