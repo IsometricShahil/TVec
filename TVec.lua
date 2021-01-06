@@ -239,6 +239,14 @@ function TVec:unpack()
 	return self.x, self.y
 end
 
+function TVec:set(x, y)
+	x = tonumber(x)
+	y = tonumber(y)
+	
+	if x then self.x = x end
+	if y then self.y = y end
+end
+
 function TVec:free()
 	for i = 1, MAX_FREE do
 		if freeStack[i] == nil then
