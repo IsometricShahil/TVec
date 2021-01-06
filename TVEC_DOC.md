@@ -1,8 +1,8 @@
 # TVec documentation
 ## Introduction
-This documentation is divided into two sections.
+This documentation is divided into two sections. <br/>
 The **API** part documents the functions, methods and metamethods provided by TVec, while
-The **Quirks** part documents various information about `TVec`.
+the **Quirks** part documents various information about `TVec`.
 You are advised to read both of these sections.
 
 ## API
