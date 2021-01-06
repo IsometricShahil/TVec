@@ -15,7 +15,7 @@ Ex. `Vec2 = require "TVec"`
 The API of TVec and it's quirks are documented in the [doc file](https://github.com/FlamingArr/TVec/blob/main/TVEC_DOC.md).
 
 # Todo
-1. `__pairs` metamethod.
+1. `__pairs` metamethod. (Will make FFI version of TVec more compatible with exisiting lua code such as [flux](https://github.com/rxi/flux).)
 2. Projection.
 3. Cross product.
 4. Mirroring.
