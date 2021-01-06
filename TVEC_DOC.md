@@ -18,8 +18,8 @@ Creates and returns a new vector. <br/>
 Returns true if `v` is a TVec vector, false otherwise. <br/>
 
 * `TVec.fromAngle(t [, m])` <br/>
-Creates and returns a new vector with the angle `t`. <br/>
-`m` is the magnitude of the vector, defaults to 1. <br/>
+Creates and returns a new vector with the angle `t` and magnitude `m`. <br/>
+`m` defaults to 1. <br/>
 **Alias**: `TVec.fromPolar`. <br/>
 
 * `TVec.random(min, max)` <br/>
