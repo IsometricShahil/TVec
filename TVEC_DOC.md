@@ -49,7 +49,7 @@ Normalizes the vector, i.e. sets is magnitude to 1. <br/>
 Rotates the vector by `t`.
 
 * `vec:rotate90()` <br/>
-Rotates the vector by Π or 90°, significantly faster than `:setAngle` and `:rotate`. <br/>
+Rotates the vector by Π or 90°, **significantly faster** than `:setAngle` and `:rotate`. <br/>
 
 * `vec:dot(b)` <br/>
 Returns the [dot product](https://en.m.wikipedia.org/wiki/Dot_product) of `vec` and `b`. <br/>
@@ -71,6 +71,10 @@ Returns a copy of `vec`. <br/>
 
 * `vec:unpack()` <br/>
 Returns the x and y components of `vec`. <br/>
+
+* `vec:set([x [, y]])` <br/>
+If `x` is given, sets the x component to `x`, else keeps it unchanged.
+Same for `y`.
 
 ### Vector metamethods
 * The operators `+`, `-`, `*`, `/`, `^`, `%` can be applied to two vectors or a vector and a scalar. <br/>
