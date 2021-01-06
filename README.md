@@ -16,9 +16,10 @@ Ex. `Vec2 = require "TVec"`
 The API of TVec and it's quirks are documented in the [doc file](https://github.com/FlamingArr/TVec/blob/main/TVEC_DOC.md).
 
 # Todo
-1. Projection.
-2. Cross product.
-3. Mirroring.
+1. `__pairs` metamethod.
+2. Projection.
+3. Cross product.
+4. Mirroring.
 
 # License
 TVec.lua is licensed under the terms and condition of the MIT License.
