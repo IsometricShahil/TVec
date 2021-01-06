@@ -19,6 +19,13 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 2. Projection.
 3. Cross product.
 4. Mirroring.
+5. Angle between two vectors.
+6. Linear interpolation.
+7. `:copy` alias for `:clone`.
+
+# Feedback
+I will very much appreciate suggestions, bug reports and general feedback from others.
+You can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
 
 # License
 TVec.lua is licensed under the terms and condition of the MIT License.
