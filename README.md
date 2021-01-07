@@ -2,7 +2,7 @@
 Pooled, FFI-ed 2D vector library for Lua. <br/>
 
 # Design
-I originally started writing this library to have a vector lib that utilizes both FFI structs and pooling.
+I originally started writing this library to have a vector lib that utilizes both FFI structs and pooling. <br/>
 This library should have a easy to digest api and friendly design. <br/>
 Although inspiration is taken from [Processing's PVector](https://processing.org/reference/PVector.html) and [Vector.lua](https://github.com/themousery/vector.lua), I don't guarantee full compatability with them.
 
