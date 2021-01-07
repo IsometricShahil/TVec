@@ -25,9 +25,6 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 -- THE SOFTWARE.
 
---assert(cond, msg) should be avoided completely to not generate garbage.
---use `if not cond then error(msg [, 2]) end
-
 --Localizations
 local type = type
 local setmetatable = setmetatable
@@ -379,7 +376,6 @@ TVec.isVector = isVector
 TVec.fromAngle = fromAngle
 TVec.fromPolar = fromAngle --Alias
 TVec.random = random
-TVec.rand = math.random
-
 TVec._stack = freeStack --In case, you feel like... "messing"
+
 return TVec
