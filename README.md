@@ -1,5 +1,11 @@
 # TVec
-1. Vector pooling.
+Pooled, FFI-ed 2D vector library for Lua. <br/>
+
+# Design
+I originally started writing this library to have a vector lib that utilizes both FFI structs and pooling.
+This library should have a easy to digest api and friendly design. <br/>
+Although inspiration is taken from [Processing's PVector](https://processing.org/reference/PVector.html) and [Vector.lua](https://github.com/themousery/vector.lua), I don't guarantee full compatability with them.
+
 2. Uses **FFI** where **JIT** is avaliable and enabled.
 3. Flexible vector arithmatic. (ex. `3+v`, `v+3`, `v+"3"`, `"3"+v`, `v1+v2`, `v1:add(3)`,`v1:add("3")`, `v1:add(v2)`)
 4. Consistent `:getBlah`/`:setBlah`,`:operation([b])` style API.
