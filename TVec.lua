@@ -1,5 +1,5 @@
 -- Name: TVec.lua
--- Description: Simple, pooled, 2D vector library for Lua.
+-- Description: Pooled, FFI-ed 2D vector library for Lua.
 -- Author: Shahil Ahmed (FlamingArr)
 -- Github: github.com/FlamingArr/TVec
 --
