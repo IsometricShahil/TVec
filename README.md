@@ -14,12 +14,11 @@ Ex. `Vec2 = require "TVec"`
 The API of TVec and it's quirks are documented in the [doc file](https://github.com/FlamingArr/TVec/blob/main/TVEC_DOC.md).
 
 # Todo
-1. `__pairs` metamethod. (Will make FFI version of TVec more compatible with exisiting lua code such as [flux](https://github.com/rxi/flux).)
-2. Projection.
-3. Cross product.
-4. Mirroring.
-5. Angle between two vectors.
-6. Linear interpolation.
+* Projection.
+* Cross product.
+* Mirroring.
+* Angle between two vectors.
+* Linear interpolation.
 
 # Feedback
 I will very much appreciate suggestions, bug reports and general feedback from others, you can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
