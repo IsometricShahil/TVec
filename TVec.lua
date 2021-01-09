@@ -181,20 +181,20 @@ end
 
 function TVec:dot(b)
 	if not isVector(b) then err("TVec expected") end
-	return a.x * b.x + a.y * b.y
+	return self.x * b.x + self.y * b.y
 end
 
 function TVec:dist(b)
 	if not isVector(b) then err("TVec expected") end
-	local xd = a.x - b.x
-	local yd = a.y - b.y
+	local xd = self.x - b.x
+	local yd = self.y - b.y
 	return sqrt(xd * xd + yd * yd)
 end
 
 function TVec:distSq(b)
 	if not isVector(b) then err("TVec expected.") end
-	local xd = a.x - b.x
-	local yd = a.y - b.y
+	local xd = self.x - b.x
+	local yd = self.y - b.y
 	return xd * xd + yd * yd
 end
 
