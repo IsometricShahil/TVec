@@ -163,7 +163,7 @@ function TVec:normalize()
 	end
 	return self
 end
-TVec.normalise = normalize --Alias
+TVec.normalise = TVec.normalize --Alias
 
 function TVec:rotate(t)
 	t = tonumber(t)
@@ -231,6 +231,7 @@ end
 function TVec:clone()
 	return new(self.x, self.y)
 end
+TVec.copy = TVec.clone --Alias
 
 function TVec:unpack()
 	return self.x, self.y
