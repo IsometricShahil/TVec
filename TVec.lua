@@ -274,6 +274,20 @@ function TVec.__tostring(v)
 	return ("(%f, %f)"):format(v.x, v.y)
 end
 
+--Make ffi version of TVec pairs() compatible.
+--In other words, make a FFI-ed vector iterable with pairs().
+local function iter(vec, step)
+	if step == nil then
+		return 'x', vec.x
+	elseif step == 'x' then
+		return 'y', vec.y
+	end
+end
+
+function TVec.__pairs(v)
+	return iter, v, nil
+end
+
 --Lazyness 101
 --'NAME' is replaced with the name of the event (eg. 'add')
 --'OP' is replaced with the operator of the event (eg. '+')
