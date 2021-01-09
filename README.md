@@ -20,7 +20,6 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 4. Mirroring.
 5. Angle between two vectors.
 6. Linear interpolation.
-7. `:copy` alias for `:clone`.
 
 # Feedback
 I will very much appreciate suggestions, bug reports and general feedback from others, you can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
