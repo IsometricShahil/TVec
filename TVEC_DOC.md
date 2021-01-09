@@ -94,7 +94,7 @@ Similiary, there are `sub`, `mul`, `div`, `mod`, `pow`.
 Used operator is applied component-wise and a new vector holding the result is returned. <br/>
 * The `==` operator can be used to check if two vectors are equal component-wise. <br/>
 * `tostring(vec)` returns a string representation of `vec`.
-* TVec vectors are fully iterable with `pairs()` regardless if the vectors are ffi structs or plain lua tables. (thanks to `.__pairs`)
+* TVec vectors are fully iterable with `pairs()` regardless of the vectors being ffi structs or plain lua tables. (thanks to `__pairs`)
 
 ## Quirks
 * **All** angles are given/taken in [radians](https://en.m.wikipedia.org/wiki/Radian).
