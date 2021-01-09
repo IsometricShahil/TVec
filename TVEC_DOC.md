@@ -71,6 +71,7 @@ Clamps the magnitude of the vector between `min` and `max`. <br/>
 
 * `vec:clone()` <br/>
 Returns a copy of `vec`. <br/>
+**Alias**: `vec:copy()`. <br/>
 
 * `vec:unpack()` <br/>
 Returns the x and y components of `vec`. <br/>
