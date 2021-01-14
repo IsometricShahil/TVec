@@ -6,7 +6,7 @@ the **Quirks** part documents various information about `TVec`.
 You are advised to read both of these sections.
 
 `f(x)` means `x` is a required parameter which you must pass in.
-`f([x])` means `x` is an optional parameter which defaults to a some value.
+`f([x])` means `x` is an optional parameter which defaults to some value.
 
 ## API
 ### Module functions
