@@ -9,11 +9,11 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Install luaJIT.
-      run: sudo apt-get install luajit
+      run: sudo apt-get install luajit -y
     - name: Check version.
       run: luajit -v
     - name: Get lust.
-      run: git clone https://github.com/bjornbytes/lust -y
+      run: git clone https://github.com/bjornbytes/lust
     - name: Run tests with jit enabled.
       run: luajit -e "jit.on()" tests.lua
     - name: Run tests with jit disabled.
@@ -27,8 +27,8 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Install lua53.
-      run: sudo apt-get install lua53
+      run: sudo apt-get install lua53 -y
     - name: Get lust.
-      run: git clone https://github.com/bjornbytes/lust -y
+      run: git clone https://github.com/bjornbytes/lust
     - name: Run tests.
       run: lua5.3 tests.lua
