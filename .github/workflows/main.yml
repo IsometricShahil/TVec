@@ -34,8 +34,6 @@ jobs:
         tar xzpf lua-5.4.2.tar.gz
         cd lua-5.4.2
         make && sudo make install
-        cd ..
-        lua --version
     - name: Get lust.
       run: git clone https://github.com/bjornbytes/lust
     - name: Run tests.
