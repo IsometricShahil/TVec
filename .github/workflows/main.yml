@@ -35,8 +35,8 @@ jobs:
         cd lua-5.4.2
         make && sudo make install
         cd ..
-        lua5.4 --version
+        lua --version
     - name: Get lust.
       run: git clone https://github.com/bjornbytes/lust
     - name: Run tests.
-      run: lua5.4 tests.lua
+      run: lua tests.lua
