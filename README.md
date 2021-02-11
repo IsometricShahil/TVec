@@ -22,7 +22,7 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 
 # Testing
 TVec uses [lust](https://github.com/bjornbytes/lust) for it's unit testing. <br/>
-To run the unit tests you must place lust beside the `tests.lua` file and then run `luajit tests.lua`, `luajit` can be `lua` too. (or.. whatever "lua" you have brewed..)
+To run the unit tests you must place lust beside the `tests.lua` file and then run `$ luajit tests.lua`, `luajit` can be `lua` too. (or.. whatever "lua" you have brewed..)
 
 # Feedback
 I will very much appreciate suggestions, bug reports and general feedback from others, you can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
