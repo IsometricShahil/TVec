@@ -10,6 +10,8 @@ jobs:
     
     - name: Install luaJIT.
       run: sudo apt-get install luajit
+    - name: Check version.
+      run: luajit -v
     - name: Get lust.
       run: git clone https://github.com/bjornbytes/lust -y
     - name: Run tests with jit enabled.
