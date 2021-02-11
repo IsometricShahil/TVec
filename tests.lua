@@ -12,3 +12,8 @@ describe("TVec tests", function()
 		expect(50).to_not.be(50)
 	end)
 end)
+
+
+if lust.errors > 0 then
+	error("Some or all tests have failed.")
+end
