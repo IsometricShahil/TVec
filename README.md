@@ -3,7 +3,7 @@ Pooled, FFI-ed 2D vector library for Lua. <br/>
 
 # Design
 I originally started writing this library to have a vector lib that utilizes both FFI structs and pooling. <br/>
-This library should have a easy to digest api and friendly design. <br/>
+This library should have an easy to digest API and friendly design. <br/>
 Although inspiration is taken from [Processing's PVector](https://processing.org/reference/PVector.html) and [Vector.lua](https://github.com/themousery/vector.lua), I don't guarantee full compatability with them.
 
 # Installation
@@ -19,6 +19,9 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 * Mirroring.
 * Angle between two vectors.
 * Linear interpolation.
+
+# Testing
+TVec uses [lust](https://github.com/bjornbytes/lust) for it's unit testing, to run the unit tests you must place lust beside the `tests.lua` file and then run `luajit tests.lua`, `luajit` can be `lua` too. (or.. whatever "lua" you have brewed..)
 
 # Feedback
 I will very much appreciate suggestions, bug reports and general feedback from others, you can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
