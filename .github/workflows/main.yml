@@ -11,7 +11,7 @@ jobs:
     - name: Install luaJIT.
       run: sudo apt-get install luajit
     - name: Get lust.
-      run: git clone https://github.com/bjornbytes/lust && ls
+      run: git clone https://github.com/bjornbytes/lust -y
     - name: Run tests with jit enabled.
       run: luajit -e "jit.on()" tests.lua
     - name: Run tests with jit disabled.
