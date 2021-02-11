@@ -18,5 +18,17 @@ jobs:
       run: luajit -e "jit.on()" tests.lua
     - name: Run tests with jit disabled.
       run: luajit -e "jit.off()" tests.lua
-
+  
+  
+  Lua53:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout.
+      uses: actions/checkout@v2
     
+    - name: Install lua53.
+      run: sudo apt-get install lua53
+    - name: Get lust.
+      run: git clone https://github.com/bjornbytes/lust -y
+    - name: Run tests.
+      run: lua5.3 tests.lua
