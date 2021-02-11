@@ -22,21 +22,21 @@ jobs:
       run: luajit -e "jit.off()" tests.lua
   
   
-  Lua53:
+  Lua54:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout.
       uses: actions/checkout@v2
     
-    - name: Install lua53.
+    - name: Install lua54.
       run: |
         wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
         tar xzpf lua-5.4.2.tar.gz
         cd lua-5.4.2
         make && sudo make install
         cd ..
-        lua5.3 --version
+        lua5.4 --version
     - name: Get lust.
       run: git clone https://github.com/bjornbytes/lust
     - name: Run tests.
-      run: lua5.3 tests.lua
+      run: lua5.4 tests.lua
