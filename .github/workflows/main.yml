@@ -30,8 +30,12 @@ jobs:
     
     - name: Install lua53.
       run: |
-        sudo apt-get update
-        sudo apt-get install lua53 -y
+        wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
+        tar xzpf lua-5.4.2.tar.gz
+        cd lua-5.4.2
+        make && sudo make install
+        cd ..
+        lua5.3 --version
     - name: Get lust.
       run: git clone https://github.com/bjornbytes/lust
     - name: Run tests.
