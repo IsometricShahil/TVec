@@ -24,7 +24,7 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 TVec uses [lust](https://github.com/bjornbytes/lust) for it's unit testing. <br/>
 To run the unit tests you must place lust beside the `tests.lua` file and then run, <br/>
 `$ luajit tests.lua`. <br/>
-`luajit` can be `lua` too. (or.. whatever "lua" you have brewed..) <br/>
+`luajit` can be `lua` too (or.. whatever "lua" you have brewed..). <br/>
 Additionally, the test suite is run automatically with every commit or PR using:-
 * LuaJIT with jit enabled
 * LuaJIT with jit disabled
