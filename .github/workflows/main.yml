@@ -1,0 +1,18 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  LuaJIT:
+    runs-on: ubuntu-latest
+    - name: Checkout.
+      uses: actions/checkout@v2
+    
+    - name: Install luaJIT.
+      run: sudo apt-get install luajit
+    - name: Run tests with jit enabled.
+      run: luajit -e "jit.on()" tests.lua
+    - name: Run tests with jit disabled.
+      run: luajit -e "jit.off()" tests.lua
+
+    
