@@ -1,19 +1,24 @@
 local lust = require "lust.lust"
-local describe = lust.describe
-local it = lust.it
-local expect = lust.expect
-
+local Vec2 = require "TVec"
+local describe, it, expect = lust.describe, lust.it, lust.expect
 
 describe("TVec tests", function()
-	it("Passing", function()
-		expect(56).to.be(56)
+	it("Constructor", function()
+		local v0 = Vec2()
+		local v5= Vec2(5)
+		expect(v0).to.be(Vec2(0, 0))
+		expect(v5).to.be(Vec2(5, 5))
 	end)
-	it("Failing", function()
-		expect(50).to_not.be(50)
+	
+	it("Type check", function()
+		local v = Vec2()
+		expect(Vec2.isVector(v)).to.be(true)
+		expect(Vec2.isVector({})).to.be(false)
+		expect(Vec2.isVector(nil)).to.be(false)
 	end)
 end)
 
 
 if lust.errors > 0 then
-	error("Some or all tests have failed.")
+	error("Some or all of the tests have failed.")
 end
