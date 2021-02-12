@@ -334,7 +334,7 @@ local ops = {
 	{"mul", "*"},
 	{"div", "/"},
 	{"pow", "^"},
-	{"mod", "%"},
+	{"mod", "%%"}, --Needs to be escaped
 }
 
 local env = { --Environment to run the chunks in
@@ -349,8 +349,8 @@ for i = 1, #ops do
 	local v = ops[i]
 	
 	--Do replacement
-	local genCode = sharedCode:gsub("NAME", "%"..v[1])
-	genCode = genCode:gsub("OP", "%"..v[2])
+	local genCode = sharedCode:gsub("NAME", v[1])
+	genCode = genCode:gsub("OP", v[2])
 	
 	--Load the chunk
 	local chunk, msg = load(genCode, "metaChunk", "t", env)

@@ -1,0 +1,40 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  LuaJIT:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout.
+      uses: actions/checkout@v2
+    
+    - name: Install luaJIT.
+      run: |
+        sudo apt-get update
+        sudo apt-get install luajit -y
+    - name: Check version.
+      run: luajit -v
+    - name: Get lust.
+      run: git clone https://github.com/bjornbytes/lust
+    - name: Run tests with jit enabled.
+      run: luajit -e "jit.on()" tests.lua
+    - name: Run tests with jit disabled.
+      run: luajit -e "jit.off()" tests.lua
+  
+  
+  Lua54:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout.
+      uses: actions/checkout@v2
+    
+    - name: Install lua54.
+      run: |
+        wget https://www.lua.org/ftp/lua-5.4.2.tar.gz
+        tar xzpf lua-5.4.2.tar.gz
+        cd lua-5.4.2
+        make && sudo make install
+    - name: Get lust.
+      run: git clone https://github.com/bjornbytes/lust
+    - name: Run tests.
+      run: lua tests.lua
