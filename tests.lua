@@ -16,6 +16,12 @@ describe("TVec tests", function()
 		expect(Vec2.isVector({})).to.be(false)
 		expect(Vec2.isVector(nil)).to.be(false)
 	end)
+	
+	it("Pooling", function()
+		local v1 = Vec2()
+		v1:free()
+		expect(Vec2()).to.be(v1)
+	end)
 end)
 
 
