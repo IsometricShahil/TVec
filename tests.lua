@@ -44,6 +44,19 @@ describe("TVec tests", function()
 			v:set(1)
 			v:set(nil, 7)
 			expect(v).to.be(Vec2(1, 7))
+			expect(Vec2()).to.be(Vec2(3, 8))
+		end)
+		
+		it("Iteration", function()
+			local v = Vec2(2, 5)
+			local record = {}
+			for k, v in pairs(v) do
+				table.insert(record, {k = k, v = v})
+			end
+			expect(record).to.equal({
+				{k = 'x', v = 2},
+				{k = 'y', v = 5}
+			})
 		end)
 	end)
 	
