@@ -30,7 +30,7 @@ Additionally, the test suite is run automatically with every commit or PR using:
 * LuaJIT with jit disabled
 * Lua5.4
 
-See, [actions](https://github.com/FlamingArr/TVec/actions) for more info.
+See, [actions](https://github.com/FlamingArr/TVec/actions) for the results.
 
 # Feedback
 I will very much appreciate suggestions, bug reports and general feedback from others, you can provide your input in [here](https://github.com/FlamingArr/TVec/issues).
