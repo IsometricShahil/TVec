@@ -40,6 +40,23 @@ describe("TVec tests", function()
 			expect(v).to.be(Vec2(0, 5))
 			expect(v:getAngle()).to.be(math.pi/2)
 		end)
+		
+		it("Normalize", function()
+			local v = Vec2(8, 0)
+			v:normalize()
+			expect(v).to.be(Vec2(1, 0))
+			
+			v = Vec2()
+			v:normalise()
+			expect(v).to.be(Vec2())
+		end)
+		
+		it("Magnitude get/getSq/set", function()
+			local v = Vec2()
+			v:setAngle(math.pi/2)
+			expect(v).to.be(Vec2(0, 5))
+			expect(v:getAngle()).to.be(math.pi/2)
+		end)
 	end)
 end)
 
