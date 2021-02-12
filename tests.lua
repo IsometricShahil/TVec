@@ -44,7 +44,6 @@ describe("TVec tests", function()
 			v:set(1)
 			v:set(nil, 7)
 			expect(v).to.be(Vec2(1, 7))
-			expect(Vec2()).to.be(Vec2(3, 8))
 		end)
 		
 		it("Iteration", function()
