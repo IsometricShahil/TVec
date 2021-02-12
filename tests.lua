@@ -95,7 +95,7 @@ describe("TVec tests", function()
 			local v1 = Vec2(-8, 6)
 			local v2 = Vec2(3, 7)
 			local d = math.sqrt((-8 - 3)^2 + (6 - 7)^2)
-			d = d + 0.0 --Convert it to a float as well
+			d = tonumber(d) --Convert it to a float as well
 			expect(v1:dist(v2)).to.be(d)
 			expect(v1:distSq(v2)).to.be(d*d)
 		end)
