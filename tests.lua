@@ -26,7 +26,16 @@ describe("TVec tests", function()
 	end)
 	
 	describe("Mathematical", function()
-		
+		it("fromAngle()", function()
+			local v = Vec2.fromAngle(math.pi, 8)
+			expect(v).to.be(Vec2(0, 8))
+			
+			v = Vec2.fromAngle(math.pi/2, 0)
+			expect(v).to.be(Vec2())
+			
+			v = Vec2.fromAngle(math.pi/2)
+			expect(v).to.be(Vec2(math.pi/4, math.pi/4))
+		end)
 	end)
 end)
 
