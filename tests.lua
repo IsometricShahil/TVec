@@ -29,7 +29,7 @@ describe("TVec tests", function()
 			local v2 = v1:clone()
 			
 			expect(v1).to.be(v2)
-			expect(tostring(v1)).to_not.be(tostring(v2))
+			expect(rawequal(v1, v2)).to.be(false)
 		end)
 		
 		it("Unpack", function()
