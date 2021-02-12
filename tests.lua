@@ -106,7 +106,6 @@ describe("TVec tests", function()
 			local v1 = Vec2(-8, 6)
 			local v2 = Vec2(3, 7)
 			local d = (-8 * 3) + (6 * 7)
-			d = d + 0.0
 			expect(v1:dot(v2)).to.be(d)
 		end)
 	end)
