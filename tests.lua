@@ -92,7 +92,11 @@ describe("TVec tests", function()
 		end)
 		
 		it("Distance", function()
-			
+			local v1 = Vec2(-8, 5)
+			local v2 = Vec2(3, 7)
+			local d = 11.18034
+			expect(v1:dist(v2)).to.be(d)
+			expect(v1:distSq(v2)).to.be(d*d)
 		end)
 		
 		it("Clamp", function()
