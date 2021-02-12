@@ -52,7 +52,12 @@ describe("TVec tests", function()
 		end)
 		
 		it("Magnitude get/getSq/set", function()
+			local v = Vec2(5, 0)
+			v:setMag(10)
+			expect(v).to.be(Vec2(10, 0))
 			
+			expect(v:getMag()).to.be(10)
+			expect(v:getMagSq()).to.be(100)
 		end)
 	end)
 end)
