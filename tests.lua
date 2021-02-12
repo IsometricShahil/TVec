@@ -50,11 +50,11 @@ describe("TVec tests", function()
 			local v = Vec2(2, 5)
 			local record = {}
 			for k, v in pairs(v) do
-				table.insert(record, {k = k, v = v})
+				record[k] = v
 			end
 			expect(record).to.equal({
-				{k = 'x', v = 2},
-				{k = 'y', v = 5}
+				x = 2,
+				y = 5
 			})
 		end)
 	end)
