@@ -99,12 +99,15 @@ describe("TVec tests", function()
 			expect(v1:distSq(v2)).to.be(d*d)
 		end)
 		
-		it("Clamp", function()
+		it("Clamp (NYI)", function()
 			
 		end)
 		
 		it("Dot", function()
-			
+			local v1 = Vec2(-8, 6)
+			local v2 = Vec2(3, 7)
+			local d = (-8 * 6) + (3 * 7)
+			expect(v1:dot(v2)).to.be(d)
 		end)
 	end)
 end)
