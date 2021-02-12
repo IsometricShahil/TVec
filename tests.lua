@@ -23,6 +23,18 @@ describe("TVec tests", function()
 				v1:free()
 				expect(Vec2()).to.be(v1)
 		end)
+		
+		it("Cloning", function()
+			
+		end)
+		
+		it("Unpacking", function()
+			
+		end)
+		
+		it("Setting", function()
+			
+		end)
 	end)
 	
 	describe("Mathematical", function()
@@ -67,6 +79,18 @@ describe("TVec tests", function()
 			
 			expect(v:getMag()).to.be(10)
 			expect(v:getMagSq()).to.be(100)
+		end)
+		
+		it("Distance", function()
+			
+		end)
+		
+		it("Clamp", function()
+			
+		end)
+		
+		it("Dot", function()
+			
 		end)
 	end)
 end)
