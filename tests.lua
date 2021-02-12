@@ -52,10 +52,7 @@ describe("TVec tests", function()
 		end)
 		
 		it("Magnitude get/getSq/set", function()
-			local v = Vec2()
-			v:setAngle(math.pi/2)
-			expect(v).to.be(Vec2(0, 5))
-			expect(v:getAngle()).to.be(math.pi/2)
+			
 		end)
 	end)
 end)
