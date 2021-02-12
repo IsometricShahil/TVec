@@ -349,7 +349,7 @@ for i = 1, #ops do
 	local v = ops[i]
 	
 	--Do replacement
-	local genCode = sharedCode:gsub("NAME", "%"..v[1])
+	local genCode = sharedCode:gsub("NAME", v[1])
 	genCode = genCode:gsub("OP", "%"..v[2])
 	
 	--Load the chunk
