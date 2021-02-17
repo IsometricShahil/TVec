@@ -13,7 +13,7 @@ You are advised to read both of these sections.
 * `TVec.new([x [, y]])` <br/>
 Creates and returns a new vector. <br/>
 `x` defaults to `0` and `y` defaults to `x`. <br/>
-**Aliad**: `TVec()` <br/>
+**Alias**: `TVec()` <br/>
 
 * `TVec.isVector(v)` <br/>
 Returns true if `v` is a TVec vector, false otherwise. <br/>
