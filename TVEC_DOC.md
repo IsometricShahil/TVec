@@ -103,6 +103,7 @@ Used operator is applied component-wise and a new vector holding the result is r
 * Methods that don't seem to return anything, return the vector itself, so you can do `vec:setAngle(3.14):setMag(4)`.
 * You can pass strings where numbers are expected, TVec will use `tonumber()` to convert them, this also applies to metamethods. <br/>
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
+* TVec uses a custom `__pairs` metamethod to support iterating on vectors with `pairs()` even when jit is enabled, i.e. when FFI structs are used. This keeps the library compatible with existing lua libraries such as [flux](https://github.com/rxi/glux).
 * While TVec validates your arguments for required params, it doesn't do that for optional params, if you pass in an invalid value for an optional param, the default value will be used.
 * TVec picks `love.math.random` if it is avaliable, otherwise it uses `math.random`.
 to make TVec use your own random function do, `TVec.rand = yourRandomFunction`,
