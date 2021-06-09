@@ -1,3 +1,4 @@
+local ffi = require "ffi"
 local lust = require "lust.lust"
 local Vec2 = require "TVec"
 local describe, it, expect = lust.describe, lust.it, lust.expect
@@ -15,6 +16,7 @@ describe("TVec tests", function()
 				local v = Vec2()
 				expect(Vec2.isVector(v)).to.be(true)
 				expect(Vec2.isVector({})).to.be(false)
+				expect(Vec2.isVector(ffi.new("struct {double x, y;}"))).to.be(false)
 				expect(Vec2.isVector(nil)).to.be(false)
 		end)
 		
@@ -22,6 +24,12 @@ describe("TVec tests", function()
 				local v1 = Vec2()
 				v1:free()
 				expect(Vec2()).to.be(v1)
+				
+				local v2 = Vec2()
+				v2:free()
+				expect(function()
+					v2:free()
+				end).to.fail()
 		end)
 		
 		it("Clone", function()
