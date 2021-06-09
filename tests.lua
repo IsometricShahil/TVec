@@ -1,4 +1,3 @@
-local ffi = require "ffi"
 local lust = require "lust.lust"
 local Vec2 = require "TVec"
 local describe, it, expect = lust.describe, lust.it, lust.expect
@@ -16,8 +15,12 @@ describe("TVec tests", function()
 				local v = Vec2()
 				expect(Vec2.isVector(v)).to.be(true)
 				expect(Vec2.isVector({})).to.be(false)
-				expect(Vec2.isVector(ffi.new("struct {double x, y;}"))).to.be(false)
 				expect(Vec2.isVector(nil)).to.be(false)
+				
+				if jit then
+					local ffi = require "ffi"
+					expect(Vec2.isVector(ffi.new("struct {double x, y;}"))).to.be(false)
+				end
 		end)
 		
 		it("Pool", function()
