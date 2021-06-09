@@ -352,7 +352,7 @@ for i = 1, #ops do
 	genCode = genCode:gsub("OP", v[2])
 	
 	--Load the chunk
-	local chunk, msg = load(genCode, "metaChunk", "t", env)
+	local chunk, msg = load(genCode, "TVecOpGen", "t", env)
 	if not chunk then error(msg) end
 	
 	--Execute it
@@ -390,6 +390,6 @@ TVec.isVector = isVector
 TVec.fromAngle = fromAngle
 TVec.fromPolar = fromAngle --Alias
 TVec.random = random
-TVec._stack = freeStack --In case, you feel like... "messing"
+TVec._stack = freeStack --In case, you feel like... "messing around"
 
 return TVec

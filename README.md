@@ -2,7 +2,7 @@
 Pooled, FFI-ed 2D vector library for Lua. <br/>
 
 # Design
-I originally started writing this library to have a vector library that utilizes both FFI structs and pooling. <br/>
+I wrote this library to take advantage of luaJIT's FFI (if avaliable) and pooling.
 This library should have an easy to digest API and friendly design. <br/>
 Although inspiration is taken from [Processing's PVector](https://processing.org/reference/PVector.html) and [Vector.lua](https://github.com/themousery/vector.lua), the API is mostly incompatible.
 
@@ -21,8 +21,9 @@ The API of TVec and it's quirks are documented in the [doc file](https://github.
 * Linear interpolation.
 
 # Testing
-TVec uses [lust](https://github.com/bjornbytes/lust) for it's unit testing. <br/>
-To run the unit tests you must place lust beside the `tests.lua` file and then run, <br/>
+TVec uses [lust](https://github.com/bjornbytes/lust) for it's unit tests. <br/>
+To run the unit tests you must place lust beside the `tests.lua` file, a simple way to do that would be to run, `git clone https://github.com/bjornbytes/lust` when in the folder containing `tests.lua`.<br/>
+Now you can run, 
 `$ luajit tests.lua`. <br/>
 `luajit` can be `lua` too (or.. whatever "lua" you have brewed..). <br/>
 Additionally, the test suite is run automatically with every commit or PR using:-
