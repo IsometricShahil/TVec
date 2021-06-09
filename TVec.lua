@@ -4,7 +4,6 @@
 -- Github: github.com/FlamingArr/TVec
 --
 -- The MIT License (MIT)
--- 
 -- Copyright (c) 2021 Shahil Ahmed
 -- 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,6 +32,7 @@ local sin, cos = math.sin, math.cos
 local atan2 = math.atan2 or math.atan
 local sqrt = math.sqrt
 local abs = math.abs
+local min, max = math.min, math.max
 local pi, huge = math.pi, math.huge
 local remove = table.remove
 local insert = table.insert
@@ -55,8 +55,8 @@ if jit and jit.status() and package.preload.ffi then
 end
 
 --C L A M P
-local function clamp(v, min, max)
-	return v < min and min or (v > max and max or v)
+local function clamp(v, lo, hi)
+	return max(lo, min(v, hi))
 end
 
 --Shortcut, keeps my fingers sane
@@ -74,7 +74,6 @@ else
 end
 --_create is just the version specific vector constructor
 --it doesn't set the x, y components
-
 
 
 --The stack to hold freed vectors
