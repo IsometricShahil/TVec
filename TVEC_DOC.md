@@ -1,8 +1,7 @@
 # TVec documentation
 ## Introduction
-This documentation is divided into two sections. <br/>
-The **API** part documents the functions, methods and metamethods provided by TVec, while
-the **Quirks** part documents various gotchas about `TVec`.
+This documentation is divided into two sections. The **API** part documents the functions, methods and metamethods provided by TVec, while
+the **General** part documents various aspects of `TVec`.
 
 `f(x)` means `x` is a required parameter which you must pass in.
 `f([x])` means `x` is an optional parameter which defaults to some value.
@@ -96,9 +95,9 @@ Used operator is applied component-wise and a new vector holding the result is r
 * `tostring(vec)` returns a string representation of `vec`.
 * TVec vectors are fully iterable with `pairs()` regardless of the vectors being ffi structs or plain lua tables. (thanks to `__pairs`)
 
-## Quirks
+## General
 * **All** angles are given/taken in [radians](https://en.m.wikipedia.org/wiki/Radian).
-* All the methods but not the metamethods work inline, but you can do something like `v:clone():setMag(2)`.
+* All the methods but not the metamethods modify the same object that is calling it. You can do something like `v:clone():setMag(2)` to get a new vector with the applied changes.
 * Methods that don't seem to return anything, return the vector itself, so you can do `vec:setAngle(3.14):setMag(4)`.
 * You can pass strings where numbers are expected, TVec will use `tonumber()` to convert them, this also applies to metamethods. <br/>
 Ex. `vec:setAngle("3.14")`, `"3" + vec` <br/>
