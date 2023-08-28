@@ -1,10 +1,10 @@
 -- Name: TVec.lua
 -- Description: Pooled, FFI-ed 2D vector library for Lua.
--- Author: Shahil Ahmed (FlamingArr)
--- Github: github.com/FlamingArr/TVec
+-- Author: Shahil Ahmed (IsometricShahil)
+-- Github: github.com/IsometricShahil/TVec
 --
 -- The MIT License (MIT)
--- Copyright (c) 2021 Shahil Ahmed
+-- Copyright (c) 2020-2023 Shahil Ahmed
 -- 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
 -- of this software and associated documentation files (the "Software"), to deal
