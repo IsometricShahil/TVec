@@ -24,7 +24,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 -- THE SOFTWARE.
 
---Localizations
+-- Localizations
 local type = type
 local setmetatable = setmetatable
 local getmetatable = getmetatable
@@ -36,54 +36,51 @@ local min, max = math.min, math.max
 local pi, huge = math.pi, math.huge
 local remove = table.remove
 local insert = table.insert
-local tau = pi*2
+local tau = pi * 2
 
-local MAX_FREE = 100 --Maximum number of freed vectors to hold in stack
+local MAX_FREE = 100 -- Maximum number of freed vectors to hold in stack
 
 local TVec = {}
 TVec.__index = TVec
 
-
 local ffi
 
---We use ffi structs if:
---1. JIT exists at all.
---2. JIT is enabled.
---3. FFI exists.
+-- We use ffi structs if:
+-- 1. JIT exists
+-- 2. JIT is enabled
+-- 3. FFI exists
 if jit and jit.status() and package.preload.ffi then
 	ffi = require "ffi"
 end
 
---C L A M P
+
 local function clamp(v, lo, hi)
 	return max(lo, min(v, hi))
 end
 
---Shortcut, keeps my fingers sane
 local function err(msg)
 	error(msg, 3)
 end
 
-
 local _create, vType
 if ffi then
-	vType = ffi.typeof("struct {double x, y;}") --Metatype is set at the end
+	vType = ffi.typeof("struct {double x, y;}") -- Metatype is set at the end
 	_create = function() return vType() end
 else
 	_create = function() return setmetatable({}, TVec) end
 end
---_create is just the version specific vector constructor
---it doesn't set the x, y components
+-- _create is just the version specific vector constructor
+-- it doesn't set the x, y components
 
 
---The stack to hold freed vectors
+-- The stack to hold freed vectors
 local freeStack = {}
 
 local function new(x, y)
-	local v = remove(freeStack) --Pop from the stack of free vectors
-	v = v or _create() --If the stack was empty then v will be nil, construct a new vector in that case
+	local v = remove(freeStack) -- Pop from the stack of free vectors
+	v = v or _create() -- If the stack was empty then v will be nil, construct a new vector in that case
 	
-	--Convert x and y to a number
+	-- Convert x and y to a number
 	x = tonumber(x)
 	y = tonumber(y)
 	
@@ -162,7 +159,7 @@ function TVec:normalize()
 	end
 	return self
 end
-TVec.normalise = TVec.normalize --Alias
+TVec.normalise = TVec.normalize -- Alias
 
 function TVec:rotate(t)
 	t = tonumber(t)
@@ -191,7 +188,7 @@ function TVec:dist(b)
 end
 
 function TVec:distSq(b)
-	if not isVector(b) then err("TVec expected.") end
+	if not isVector(b) then err("TVec expected") end
 	local xd = self.x - b.x
 	local yd = self.y - b.y
 	return xd * xd + yd * yd
@@ -230,7 +227,7 @@ end
 function TVec:clone()
 	return new(self.x, self.y)
 end
-TVec.copy = TVec.clone --Alias
+TVec.copy = TVec.clone -- Alias
 
 function TVec:unpack()
 	return self.x, self.y
@@ -261,7 +258,7 @@ end
 
 function TVec.__eq(a, b)
 	if not (isVector(a) and isVector(b)) then err("TVec expected") end
-	return abs(a.x - b.x) < 1e-9 and --Using == on floating numbers is a sin
+	return abs(a.x - b.x) < 1e-9 and -- Avoiding usage of == on floating numbers
 	       abs(a.y - b.y) < 1e-9
 end
 
@@ -273,8 +270,8 @@ function TVec.__tostring(v)
 	return ("(%f, %f)"):format(v.x, v.y)
 end
 
---Make ffi version of TVec pairs() compatible.
---In other words, make a FFI-ed vector iterable with pairs().
+-- Make a FFI-ed vector iterable with pairs()
+
 local function iter(vec, step)
 	if step == nil then
 		return 'x', vec.x
@@ -287,12 +284,8 @@ function TVec.__pairs(v)
 	return iter, v, nil
 end
 
---Lazyness 101
---'NAME' is replaced with the name of the event (eg. 'add')
---'OP' is replaced with the operator of the event (eg. '+')
-
 local sharedCode = [[
-	function TVec:NAME(b) --An inline method, used like vec:add(v)
+	function TVec:NAME(b) -- An inline method, used like vec:add(v)
 		if not (isVector(b) or tonumber(b)) then err("TVec or number expected") end
 		if isVector(b) then
 			self.x = self.x OP b.x
@@ -306,9 +299,9 @@ local sharedCode = [[
 		return self
 	end
 	
-	function TVec.__NAME(a, b) --Metamethod
+	function TVec.__NAME(a, b) -- Metamethod
 		if isVector(b) and not isVector(a) then
-			return b OP a --Reverse it
+			return b OP a -- Reverse it
 		end
 		
 		if not isVector(a) then err("TVec expected") end
@@ -327,16 +320,16 @@ local sharedCode = [[
 ]]
 
 local ops = {
-	--Format: {Event, Operator}
+	-- {Event, Operator}
 	{"add", "+"},
 	{"sub", "-"},
 	{"mul", "*"},
 	{"div", "/"},
 	{"pow", "^"},
-	{"mod", "%%"}, --Needs to be escaped
+	{"mod", "%%"},
 }
 
-local env = { --Environment to run the chunks in
+local env = { -- Environment to run the chunks in
 	TVec = TVec,
 	new = new,
 	isVector = isVector,
@@ -347,33 +340,30 @@ local env = { --Environment to run the chunks in
 for i = 1, #ops do
 	local v = ops[i]
 	
-	--Do replacement
 	local genCode = sharedCode:gsub("NAME", v[1])
 	genCode = genCode:gsub("OP", v[2])
 	
-	--Load the chunk
 	local chunk, msg = load(genCode, "TVecOpGen", "t", env)
 	if not chunk then error(msg) end
-	
-	--Execute it
+
 	chunk()
 end
 
---Don't hold these in memory
+-- Don't hold these in memory
 ops = nil
 env = nil
 
---Wrap TVec.new(x, y) as TVec(x, y)
+-- Wrap TVec.new(x, y) as TVec(x, y)
 setmetatable(TVec, {
 	__call = function(_, x, y)
 		return new(x, y)
 	end
 })
 
---Default to math.random
+-- Default to math.random
 TVec.rand = math.random
 
---Switch to love.math.random if avaliable
+-- Switch to love.math.random if avaliable
 if type(love) == "table" and
    type(love.math) == "table" and
    type(love.math.random) == "function" then
@@ -384,12 +374,12 @@ if ffi then
 	ffi.metatype(vType, TVec)
 end
 
---Module packup
+-- Module packup
 TVec.new = new
 TVec.isVector = isVector
 TVec.fromAngle = fromAngle
-TVec.fromPolar = fromAngle --Alias
+TVec.fromPolar = fromAngle -- Alias
 TVec.random = random
-TVec._stack = freeStack --In case, you feel like... "messing around"
+TVec._stack = freeStack -- Exposing this to you if you have anything in mind :)
 
 return TVec
